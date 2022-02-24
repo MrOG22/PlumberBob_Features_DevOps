@@ -81,7 +81,7 @@ public class Player : MonoBehaviour
 	{
 		Vector2 position = transform.position;
 		Vector2 direction = Vector2.down;
-		float distance = (myBoxCillider.size.y / 2f) * 1.1f;
+		float distance = (myBoxCillider.size.y / 2f) * 1.4f;
 
 		Debug.DrawRay(position, new Vector3(0,-distance,0), Color.green);
 		RaycastHit2D hit = Physics2D.Raycast(position, direction, distance, groundLayer);
