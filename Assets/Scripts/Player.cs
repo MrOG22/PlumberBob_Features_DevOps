@@ -11,6 +11,8 @@ public class Player : MonoBehaviour
 	[SerializeField] private float moveSpeed = 2500f;
 	[SerializeField] private float jumpPower = 1500f;
 	[SerializeField] private LayerMask groundLayer;
+	[SerializeField] private LayerMask qblockLayer;
+	[SerializeField] private LayerMask enemyLayer;
 
 	[Header("Health")]
 	[SerializeField] private int maxHealth = 3;
@@ -51,8 +53,8 @@ public class Player : MonoBehaviour
 		InputHanlder();
 		Movement();
 		AnimationHanlder();
-		//JumpOnEnemy();
-		//JumpInToQBlock();
+		JumpOnEnemy();
+		JumpInToQBlock();
 	}
 
 	private void InputHanlder()
@@ -120,10 +122,10 @@ public class Player : MonoBehaviour
 		float distance = (myBoxCillider.size.y / 2f) * 1.1f;
 
 		Debug.DrawRay(position, new Vector3(0, -distance, 0), Color.green);
-		RaycastHit2D hit = Physics2D.Raycast(position, direction, distance, groundLayer);
+		RaycastHit2D hit = Physics2D.Raycast(position, direction, distance, enemyLayer);
 		if (hit.collider != null && hit.collider.tag == "Enemy")
 		{
-			//hit.collider.gameObject.GetComponent<EnemyAI>().Death();
+			hit.collider.gameObject.GetComponent<EnemyAI>().Death();
 			Jump();
 		}
 	}
@@ -135,10 +137,10 @@ public class Player : MonoBehaviour
 		float distance = (myBoxCillider.size.y / 2f) * 1.1f;
 
 		Debug.DrawRay(position, new Vector3(0, distance, 0), Color.green);
-		RaycastHit2D hit = Physics2D.Raycast(position, direction, distance, groundLayer);
+		RaycastHit2D hit = Physics2D.Raycast(position, direction, distance, qblockLayer);
 		if (hit.collider != null && hit.collider.tag == "QBlock")
 		{
-			//hit.collider.gameObject.GetComponent<EnemyAI>().Death();
+			hit.collider.gameObject.GetComponent<QBlock>().Die();
 		}
 	}
 
