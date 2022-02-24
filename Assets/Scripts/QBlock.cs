@@ -19,6 +19,9 @@ public class QBlock : MonoBehaviour
 
     public void Die()
     {
+        if (!IsAlive)
+            return;
+
         animator.SetBool("Die", true);
         isAlive = false;
         GameObject tmp = Instantiate(powerUp);

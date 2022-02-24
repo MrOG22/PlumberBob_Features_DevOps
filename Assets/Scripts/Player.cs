@@ -119,13 +119,29 @@ public class Player : MonoBehaviour
 	{
 		Vector2 position = transform.position;
 		Vector2 direction = Vector2.down;
-		float distance = (myBoxCillider.size.y / 2f) * 1.1f;
+		float distance = (myBoxCillider.size.y / 2f) * 1.2f;
 
 		Debug.DrawRay(position, new Vector3(0, -distance, 0), Color.green);
 		RaycastHit2D hit = Physics2D.Raycast(position, direction, distance, enemyLayer);
 		if (hit.collider != null && hit.collider.tag == "Enemy")
 		{
 			hit.collider.gameObject.GetComponent<EnemyAI>().Death();
+			Jump();
+		}
+
+		Debug.DrawRay(position + new Vector2(-0.1f, 0), new Vector3(0, -distance, 0), Color.green);
+		RaycastHit2D hit2 = Physics2D.Raycast(position +new Vector2(-0.1f,0), direction, distance, enemyLayer);
+		if (hit2.collider != null && hit2.collider.tag == "Enemy")
+		{
+			hit2.collider.gameObject.GetComponent<EnemyAI>().Death();
+			Jump();
+		}
+
+		Debug.DrawRay(position + new Vector2(0.1f, 0), new Vector3(0, -distance, 0), Color.green);
+		RaycastHit2D hit3 = Physics2D.Raycast(position + new Vector2(0.1f, 0), direction, distance, enemyLayer);
+		if (hit3.collider != null && hit3.collider.tag == "Enemy")
+		{
+			hit3.collider.gameObject.GetComponent<EnemyAI>().Death();
 			Jump();
 		}
 	}
