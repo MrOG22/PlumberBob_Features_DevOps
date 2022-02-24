@@ -12,6 +12,7 @@ public class EnemyAI : MonoBehaviour
     private Rigidbody2D rigidbody;
     private Animator animator;
     [SerializeField] private LayerMask groundLayer;
+    private BoxCollider2D myBoxCollider;
 
 
     private void Awake()
@@ -21,7 +22,7 @@ public class EnemyAI : MonoBehaviour
 
         rigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponentInChildren<Animator>();
-
+        myBoxCollider = GetComponent<BoxCollider2D>();
 
     }
     // Update is called once per frame
@@ -48,9 +49,9 @@ public class EnemyAI : MonoBehaviour
     {
         Vector2 position = transform.position;
         Vector2 direction = directionGoingRight == true ? Vector2.right : Vector2.left;
-        float distance = 1.1f;
+        float distance = (myBoxCollider.size.x/2f)*1.4f;
 
-        Debug.DrawRay(position, direction, Color.green);
+        Debug.DrawRay(position, new Vector3((float)(directionGoingRight ? distance: -distance),0,0), Color.green);
         RaycastHit2D hit = Physics2D.Raycast(position, direction, distance, groundLayer);
         if (hit.collider != null)
         {
@@ -62,7 +63,7 @@ public class EnemyAI : MonoBehaviour
 
     public void Death()
     {
-        Destroy(this);
+        Destroy(this.gameObject);
 
     }
 

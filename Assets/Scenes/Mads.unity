@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 66069237}
   - component: {fileID: 66069236}
   - component: {fileID: 66069235}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -436,6 +436,7 @@ GameObject:
   - component: {fileID: 1459437391}
   - component: {fileID: 1459437390}
   - component: {fileID: 1459437389}
+  - component: {fileID: 1459437393}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -460,7 +461,7 @@ MonoBehaviour:
   speed: 60
   groundLayer:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 64
 --- !u!50 &1459437390
 Rigidbody2D:
   serializedVersion: 4
@@ -523,6 +524,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1459437393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1459437388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f64d4d2ca6997d942917636cb4ebdb51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1490959015
 GameObject:
   m_ObjectHideFlags: 0
@@ -564,6 +577,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1842221042}
   - component: {fileID: 1842221043}
+  - component: {fileID: 1842221044}
   m_Layer: 0
   m_Name: Enemy_0
   m_TagString: Untagged
@@ -636,6 +650,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1842221044
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1842221041}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d8c3d39f25b3a0a44af9f069a2ff76c8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1985549201
 GameObject:
   m_ObjectHideFlags: 0
@@ -647,7 +680,7 @@ GameObject:
   - component: {fileID: 1985549204}
   - component: {fileID: 1985549203}
   - component: {fileID: 1985549202}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
