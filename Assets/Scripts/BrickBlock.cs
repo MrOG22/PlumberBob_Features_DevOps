@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class BrickBlock : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    /// <summary>
+    /// Breaks the block
+    /// </summary>
+    public void BreakBlock()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        gameObject.SetActive(false);
     }
 }
