@@ -13,6 +13,7 @@ public class EnemyAI : MonoBehaviour
     private Animator animator;
     [SerializeField] private LayerMask groundLayer;
     private BoxCollider2D myBoxCollider;
+    [SerializeField] private LayerMask playerLayer;
 
 
     private void Awake()
@@ -32,6 +33,7 @@ public class EnemyAI : MonoBehaviour
             return;
 
         Movement();
+        DamagePlayer();
     }
 
     void Movement()
@@ -59,6 +61,36 @@ public class EnemyAI : MonoBehaviour
         }
 
         return false;
+    }
+
+    void DamagePlayer()
+    {
+        Vector2 position = transform.position;
+        Vector2 direction = directionGoingRight == true ? Vector2.right : Vector2.left;
+        float distance = (myBoxCollider.size.x / 2f) * 1.4f;
+
+        Debug.DrawRay(position, new Vector3( distance , 0, 0), Color.green);
+        Debug.DrawRay(position, new Vector3( -distance , 0, 0), Color.green);
+        RaycastHit2D hitRight = Physics2D.Raycast(position, Vector2.right, distance, playerLayer);
+        RaycastHit2D hitLeft = Physics2D.Raycast(position, Vector2.left, distance, playerLayer);
+
+        if (hitRight.collider != null && hitRight.collider.tag == "Player")
+        {
+            Player player = hitRight.collider.GetComponent<Player>();
+            if(player != null)
+            {
+                player.TakeDamage(1);
+            }
+        }       
+        if (hitLeft.collider != null && hitLeft.collider.tag == "Player")
+        {
+            Player player = hitLeft.collider.GetComponent<Player>();
+            if(player != null)
+            {
+                player.TakeDamage(1);
+            }
+        }
+
     }
 
     public void Death()
