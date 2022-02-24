@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class QBlock : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private GameObject powerUp;
+    [SerializeField] private Transform spawnPoint;
+    private Animator animator;
+    private bool isAlive;
+
+    public bool IsAlive { get => isAlive; }
+
+    private void Awake()
     {
-        
+        isAlive = true;
+        animator = GetComponentInChildren<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Die()
     {
-        
+        animator.SetBool("Die", true);
+        isAlive = false;
+        GameObject tmp = Instantiate(powerUp);
+        tmp.transform.position = spawnPoint.position;
     }
 }
